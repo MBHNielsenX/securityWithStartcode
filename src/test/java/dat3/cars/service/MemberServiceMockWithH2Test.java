@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class MemberServiceMockWithH2Test {
-    /*
+
 
     public MemberService memberService;
 
@@ -52,13 +52,15 @@ class MemberServiceMockWithH2Test {
     void editMember() {
     }
 
-
+/*
     @Test
     void getMembers() {
         List<MemberResponse> response = memberService.getMembers();
         assertEquals(2, response.size());
         assertThat(response, containsInAnyOrder(hasProperty("email", is("m1@a.dk")), hasProperty("email", is("mm@a.dk"))));
     }
+
+ */
     
 
 
@@ -78,5 +80,5 @@ class MemberServiceMockWithH2Test {
     void setRankingForUser() {
     }
 
-     */
+
 }
