@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
 class CarRepositoryTest {
+  /*
   @Autowired
   CarRepository carRepository;
 
@@ -45,4 +46,6 @@ class CarRepositoryTest {
     cars = carRepository.findCarByPricePrDayBetween(0,701);
     assertEquals(2,cars.size());
   }
+
+   */
 }

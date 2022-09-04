@@ -19,6 +19,7 @@ import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 class MemberServiceMockitoTest {
+    /*
 
     @Mock
     MemberRepository memberRepository;
@@ -73,4 +74,6 @@ class MemberServiceMockitoTest {
     @Test
     void deleteByUsername() {
     }
+
+     */
 }
