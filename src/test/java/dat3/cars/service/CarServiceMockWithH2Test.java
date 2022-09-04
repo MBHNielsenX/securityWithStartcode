@@ -16,7 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 class CarServiceMockWithH2Test {
-
+/*
     public CarService carService;
     public static CarRepository carRepository;
 
@@ -46,7 +46,7 @@ class CarServiceMockWithH2Test {
         assertEquals(2, cars.size());
         //assertNull(cars.get(0).getBestDiscount());
     }
-    /*
+
 
     @Test
     void addCar() {
@@ -56,9 +56,9 @@ class CarServiceMockWithH2Test {
         assertTrue(response.getCreated().isBefore(LocalDateTime.now()));
     }
 
-     */
 
-    /*
+
+
     @Test
     void editCar() {
         Car carToEdit = carRepository.findById(car1Id).get();
@@ -73,7 +73,7 @@ class CarServiceMockWithH2Test {
         assertTrue(edited.getEdited().isBefore(LocalDateTime.now()));
     }
 
-     */
+
 
     @Test
     void findCarById() throws Exception {
@@ -87,5 +87,7 @@ class CarServiceMockWithH2Test {
         CarResponse response = carService.findCarById(car1Id);
         assertEquals(111, response.getPricePrDay());
     }
+
+ */
 
 }
