@@ -46,6 +46,7 @@ class CarServiceMockWithH2Test {
         assertEquals(2, cars.size());
         //assertNull(cars.get(0).getBestDiscount());
     }
+    /*
 
     @Test
     void addCar() {
@@ -54,6 +55,8 @@ class CarServiceMockWithH2Test {
         assertTrue(response.getId() > 0);
         assertTrue(response.getCreated().isBefore(LocalDateTime.now()));
     }
+
+     */
 
     /*
     @Test
