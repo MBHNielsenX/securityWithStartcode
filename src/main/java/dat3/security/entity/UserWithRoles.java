@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 @Setter
 @ToString
 @Entity
+//@SuperBuilder
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DISCRIMINATOR_TYPE")
 public class UserWithRoles implements UserDetails {
@@ -59,7 +60,7 @@ public class UserWithRoles implements UserDetails {
     public UserWithRoles() {}
 
 
-   // We will use this constructor when/if users must be created via an HTTP-request
+    // We will use this constructor when/if users must be created via an HTTP-request
     public UserWithRoles(UserWithRolesRequest body) {
         this.username = body.getUsername();
         this.setPassword(body.getPassword());

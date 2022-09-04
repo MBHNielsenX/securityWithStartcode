@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface CarRepository extends JpaRepository<Car,Integer> {
 
+  List<Car> findCarById(int id);
   List<Car> findCarByBrand(String brand);
   List<Car> findCarByPricePrDayBetween(double start, double min);
 }
