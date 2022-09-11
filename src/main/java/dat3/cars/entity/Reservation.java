@@ -21,6 +21,7 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
+    //hej
 
 
 
