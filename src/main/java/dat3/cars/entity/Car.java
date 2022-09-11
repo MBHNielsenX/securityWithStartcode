@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class Car {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  int id;
+  private int id;
 
   @Column(length = 50,nullable = false)
   private String brand;
@@ -27,16 +27,16 @@ public class Car {
   @Column(length= 50, nullable = false)
   private String model;
 
-  double pricePrDay;
+  private double pricePrDay;
 
   //Best discount price (percent for pricePrDay) an admin can offer
-  double bestDiscount;
+  private double bestDiscount;
 
   @CreationTimestamp
-  LocalDateTime created;
+  private LocalDateTime created;
 
   @UpdateTimestamp
-  LocalDateTime edited;
+  private LocalDateTime edited;
 
 
   public Car(String brand, String model, double pricePrDay, double bestDiscount) {
