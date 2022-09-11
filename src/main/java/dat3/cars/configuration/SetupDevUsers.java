@@ -2,8 +2,10 @@ package dat3.cars.configuration;
 
 import dat3.cars.entity.Car;
 import dat3.cars.entity.Member;
+import dat3.cars.entity.Reservation;
 import dat3.cars.repository.CarRepository;
 import dat3.cars.repository.MemberRepository;
+import dat3.cars.repository.ReservationRepository;
 import dat3.security.entity.Role;
 import dat3.security.entity.UserWithRoles;
 import dat3.security.repository.UserWithRolesRepository;
@@ -11,38 +13,67 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 @Controller
 public class SetupDevUsers implements ApplicationRunner {
 
   UserWithRolesRepository userWithRolesRepository;
   MemberRepository memberRepository;
 
+  ReservationRepository reservationRepository;
   CarRepository carRepository;
   String passwordUsedByAll;
 
   public SetupDevUsers(UserWithRolesRepository userWithRolesRepository,
                        MemberRepository memberRepository,
+                       ReservationRepository reservationRepository,
                        CarRepository carRepository) {
     this.userWithRolesRepository = userWithRolesRepository;
     this.memberRepository = memberRepository;
+    this.reservationRepository = reservationRepository;
     this.carRepository = carRepository;
     passwordUsedByAll = "test12";
   }
 
   @Override
   public void run(ApplicationArguments args) {
-    Member m1 = new Member("member1", passwordUsedByAll, "memb1@a.dk", "Kurt", "Wonnegut", "Lyngbyvej 2", "Lynbby", "2800");
-    memberRepository.save(m1);
+    ArrayList<Car> carsArray = new ArrayList<>(Arrays.asList(
+            new Car ("Mazda", "5", 800, 80),
+            new Car ("Mercedes", "Benz", 1000, 100),
+            new Car ("Ford", "Fiesta", 400, 10)
+    ));
 
-    Car car1 = Car.builder()
-            .brand("Volvo")
-            .model("V70")
-            .pricePrDay(700)
-            .bestDiscount(30.0)
-            .build();
+    ArrayList<Member> membersArray = new ArrayList<>(Arrays.asList(
+            new Member("mbhnielsen", "jegersej123", "mbhnielsen@gmail.com", "Mads", "Nielsen", "Borgmestervangen", "København", "2200", true,1 ),
+            new Member("jennermanden", "jensersej123", "jens@gmail.com", "jens", "Legarth", "Mimersgade", "København", "2200", false, 1),
+            new Member("johannesmanden", "johannesersej123", "johannes@gmail.com", "Johannes", "Fosting", "Nørrebrogade", "København", "2200", false, 1)
+    ));
 
-    carRepository.save(car1);
-    setupUserWithRoleUsers();
+    ArrayList<Reservation> reservationsArray = new ArrayList<>(Arrays.asList(
+            new Reservation(carsArray.get(0), membersArray.get(0), LocalDate.of(2022,9,10)),
+            new Reservation(carsArray.get(0), membersArray.get(0), LocalDate.of(2022,11,15)),
+            new Reservation(carsArray.get(0), membersArray.get(0), LocalDate.of(2022,12,29))
+
+    ));
+
+    membersArray.get(0).addReservation(reservationsArray.get(0));
+    membersArray.get(0).addReservation(reservationsArray.get(1));
+    membersArray.get(0).addReservation(reservationsArray.get(2));
+
+
+    carRepository.save(carsArray.get(0));
+    carRepository.save(carsArray.get(1));
+    carRepository.save(carsArray.get(2));
+    memberRepository.save(membersArray.get(0));
+    memberRepository.save(membersArray.get(1));
+    memberRepository.save(membersArray.get(2));
+    reservationRepository.save(reservationsArray.get(0));
+    reservationRepository.save(reservationsArray.get(1));
+    reservationRepository.save(reservationsArray.get(2));
   }
 
   /*****************************************************************************************

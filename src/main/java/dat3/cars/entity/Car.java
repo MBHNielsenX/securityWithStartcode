@@ -6,6 +6,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,9 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @ToString
-@EqualsAndHashCode  // When performance becomes important, never set like this
-
-@Entity
+@Entity(name = "cars")
 public class Car {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +37,9 @@ public class Car {
 
   @UpdateTimestamp
   private LocalDateTime edited;
+
+  @OneToMany(mappedBy = "car")
+  private List<Reservation> reservations = new ArrayList<>();
 
 
   public Car(String brand, String model, double pricePrDay, double bestDiscount) {

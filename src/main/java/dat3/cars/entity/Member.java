@@ -7,15 +7,15 @@ import lombok.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name = "members")
 public class Member extends UserWithRoles {
 
   // Id is username from UserWithRoles
@@ -39,8 +39,8 @@ public class Member extends UserWithRoles {
   private boolean approved;
   private int ranking;
 
-  @OneToMany
-  private List<Reservation> reservations;
+  @OneToMany(mappedBy = "member")
+  private List<Reservation> reservations = new ArrayList<>();
 
   public Member(String user, String password, String email, String firstName, String lastName, String street, String city, String zip) {
     super(user, password, email);
@@ -50,4 +50,21 @@ public class Member extends UserWithRoles {
     this.city = city;
     this.zip = zip;
   }
+
+  public Member(String user, String password, String email, String firstName, String lastName, String street, String city, String zip, boolean approved, int ranking) {
+    super(user, password, email);
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.street = street;
+    this.city = city;
+    this.zip = zip;
+    this.approved = approved;
+    this.ranking = ranking;
+  }
+
+  public void addReservation(Reservation res) {
+    reservations.add(res);
+    res.setMember(this);
+  }
+
 }

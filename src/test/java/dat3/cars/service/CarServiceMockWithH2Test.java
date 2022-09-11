@@ -79,14 +79,14 @@ class CarServiceMockWithH2Test {
 
     @Test
     void findCarById() throws Exception {
-        CarResponse response = carService.findCarById(car1Id);
+        CarResponse response = carService.getCarById(car1Id);
         assertEquals(car1Id, response.getId());
     }
 
     @Test
     void setPricePrDay() throws Exception {
         carService.setPricePrDay(car1Id, 111);
-        CarResponse response = carService.findCarById(car1Id);
+        CarResponse response = carService.getCarById(car1Id);
         assertEquals(111, response.getPricePrDay());
     }
 

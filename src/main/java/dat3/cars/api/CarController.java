@@ -5,6 +5,7 @@ import dat3.cars.dto.CarRequest;
 import dat3.cars.dto.CarResponse;
 import dat3.cars.service.CarService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +22,7 @@ public class CarController {
     }
 
     // Security Admin
-    //@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @PostMapping
-    // same as above when you are using @RestController
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public CarResponse addCar(@RequestBody CarRequest body){
         return carService.addCar(body, true);
     }
@@ -38,7 +37,7 @@ public class CarController {
     //Security Admin
     @GetMapping(path = "/{id}")
     public CarResponse getCarById(@PathVariable Integer id) throws Exception {
-        return carService.findCarById(id);
+        return carService.getCarById(id);
     }
 
 
